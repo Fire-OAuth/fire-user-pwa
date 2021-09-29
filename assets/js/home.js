@@ -46,3 +46,7 @@ function getUserDetails() {
         })
     })
 }
+
+document.querySelector(".signupHeader").addEventListener("click", () => {
+    document.querySelector(".signupInfo").classList.toggle("show")
+})
