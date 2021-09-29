@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/qr.css">
+    <script src="/assets/js/sitepointqr.js"></script>
+    <title>Scan QR</title>
+</head>
+<body>
+    <div class="loadingContainer">
+        <div class="loading">
+            <img src="/assets/images/loading.gif" alt="Loading">
+        </div>
+    </div>
+    <div id="container">
+        <h1>Scan the Fire QR to Authorize</h1>
+  
+        <a id="btn-scan-qr">
+          <img src="/assets/images/meowqr.png">
+        </a>
+
+        <div class="startInfo">Click on the QR to start scanning</div>
+  
+        <canvas hidden="" id="qr-canvas"></canvas>
+  
+        <div id="qr-result" hidden="">
+          <b>Data:</b> <span id="outputData"></span>
+        </div>
+      </div>
+  
+      <script src="/assets/js/qrCodeScanner.js"></script>
+</body>
+</html>
