@@ -11,9 +11,24 @@
 	<body>
 		<div class="wrapper">
             <div class="loginContainer">
-                <h1>Login</h1>
-                <form method="post" onsubmit="submitForm('login'); return false">
+                <h1>Register</h1>
+                <form method="post" onsubmit="submitForm('register'); return false">
                     <p class="errorMessage"></p>
+                    <input
+                        type="text"
+                        name="firstName"
+                        id="firstName"
+                        placeholder="First Name"
+                        required
+                        autofocus
+                    />
+                    <input
+                        type="text"
+                        name="lastName"
+                        id="lastName"
+                        placeholder="Last Name"
+                        required=""
+                    />
                     <input
                         type="text"
                         name="email"
@@ -21,7 +36,8 @@
                         placeholder="Email"
                         required
                         autofocus
-                    /><input
+                    />
+                    <input
                         type="password"
                         name="password"
                         id="password"
@@ -30,7 +46,7 @@
                     />
                     <input type="submit" value="Login" />
                 </form>
-                <a href="/register.html">Need an account? Register here.</a>
+                <a href="/login.html">Have an account? Login here.</a>
             </div>
         </div>
         <script src="/assets/js/lovefield.js"></script>

@@ -19,16 +19,30 @@ schemaBuilder.connect().then(function (db) {
     item = db.getSchema().table("User")
 })
 
-async function submitForm () {
-    let username = document.getElementById('logUsername').value;
-    let password = document.getElementById('logPassword').value;
+async function submitForm (type) {
 
-    let data = {
-        username: username,
-        password: password
-    };
+    let data = {}
 
-    let response = await fetch('http://localhost:5000/login', {
+    if(type == 'login') {
+        data = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        }
+    }
+    else if(type == 'register') {
+        data = {
+            email: document.getElementById('email').value,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            password: document.getElementById('password').value
+        }
+    }
+
+    let endpoint = type == 'login' ? 'login' : 'register'
+
+
+
+    let response = await fetch(`http://localhost:5000/${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
