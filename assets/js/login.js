@@ -38,11 +38,12 @@ async function submitForm (type) {
         }
     }
 
+    let fireServerURL = 'http://localhost:3003/api/users'
     let endpoint = type == 'login' ? 'login' : 'register'
 
 
 
-    let response = await fetch(`http://localhost:5000/${endpoint}`, {
+    let response = await fetch(`${fireServerURL}/${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
