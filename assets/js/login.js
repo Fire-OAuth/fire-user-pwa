@@ -58,7 +58,7 @@ async function submitForm (type) {
 
     response = await response.json();
     console.log(response)
-    if(response.success){
+    if(responseStatus){
         await createItem(response).catch(err => console.log(err))
         window.location.href = '/';
     }
