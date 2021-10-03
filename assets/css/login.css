@@ -38,6 +38,11 @@ form {
 	flex-direction: column;
 }
 
+.errorMessage {
+	color: red;
+    font-size: 1.5rem;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"] {
