@@ -49,7 +49,12 @@ async function submitForm (type) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    });
+    })
+
+    let responseStatus
+
+    if (type == 'register') responseStatus = response.status == 201 ? true : false
+    else responseStatus = response.status == 200 ? true : false
 
     response = await response.json();
     console.log(response)
