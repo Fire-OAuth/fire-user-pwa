@@ -60,7 +60,14 @@ async function submitForm (type) {
     console.log(response)
     if(responseStatus){
         await createItem(response).catch(err => console.log(err))
-        window.location.href = '/';
+
+        if(type == 'login') window.location.href = '/';
+        else {
+            document.querySelector(".loading").style.display = "flex";
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
+        }
     }
     else {
         document.querySelector(".errorMessage").innerHTML = response.message;
