@@ -5,6 +5,7 @@ let schemaBuilder = lf.schema.create("userData", 1)
 schemaBuilder
     .createTable("User")
     .addColumn("id", lf.Type.INTEGER)
+    .addColumn("_id", lf.Type.STRING)
     .addColumn("email", lf.Type.STRING)
     .addColumn("firstName", lf.Type.STRING)
     .addColumn("lastName", lf.Type.STRING)
