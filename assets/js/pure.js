@@ -64,7 +64,7 @@ function showListOfTransactions (data) {
                                 ${element.url}
                             </div>
                             <div class="fullTimeContainer" data-id="${token}">
-                                ${element.time}
+                                ${new Date(element.time)}
                             </div>
                             <div class="signupMethod" data-id="${token}">
                                 Method: ${element.method}
