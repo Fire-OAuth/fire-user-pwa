@@ -72,19 +72,9 @@ qrcode.callback = async (data) => {
 				window.location.href = "/login.html"
 			}
 		})
-
-		loadingScreen.style.display = "block"
-
-		outputData.innerText = sessionId
-		scanning = false
-
 		video.srcObject.getTracks().forEach((track) => {
 			track.stop()
 		})
-
-		qrResult.hidden = false
-		canvasElement.hidden = true
-		btnScanQR.hidden = false
 	}
 }
 
