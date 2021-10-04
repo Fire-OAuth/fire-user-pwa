@@ -32,7 +32,11 @@ schemaBuilder.connect().then(async function (db) {
 
         let userId = user._id
         let token = await generateToken(userId, sessionId)
-        console.log(token)
+
+        let dataToBeSentThroughSocket = {
+            token: token,
+            sessionId: sessionId
+        }
     }
     else {
         window.location.href = "/login.html"
