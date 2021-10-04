@@ -11,6 +11,7 @@ const loadingScreen = document.querySelector(".loadingContainer")
 let scanning = false
 
 let schemaBuilder = lf.schema.create("userData", 1)
+let transactionSchemaBuilder = lf.schema.create("transactionData", 2)
 
 schemaBuilder
 	.createTable("User")
@@ -22,12 +23,20 @@ schemaBuilder
 	.addColumn("profilePic", lf.Type.STRING)
 	.addPrimaryKey(["id"], true)
 
+transactionSchemaBuilder
+    .createTable("Transactions")
+    .addColumn("id", lf.Type.INTEGER)
+    .addColumn("token", lf.Type.STRING)
+    .addColumn("url", lf.Type.STRING)
+    .addColumn("time", lf.Type.STRING)
+    .addColumn("method", lf.Type.STRING)
+    .addPrimaryKey(["id"], true);
+
 let userDb
 let item
 
-qrcode.callback = (sessionId) => {
-	if (sessionId) {
-		console.log(sessionId)
+let transactionDb
+let transaction
 
 		schemaBuilder.connect().then(async function (db) {
 			userDb = db
