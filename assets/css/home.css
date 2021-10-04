@@ -19,10 +19,7 @@ html, body {
 .wrapper {
     height: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 
 }
 
@@ -112,8 +109,16 @@ html, body {
     width: clamp(300px, 90%, 750px);
     margin: 0 auto;
     padding-top: 2rem;
+    padding-bottom: 2rem;
     display: flex;
     flex-direction: column;
+}
+
+.signupsContainer :is(.heading) {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 0 0.5rem 0.5rem 0.5rem;
 }
 
 .signup {
@@ -126,6 +131,11 @@ html, body {
     border-radius: 5px;
 }
 
+.signup span {
+    max-width: 250px;
+    pointer-events: none;
+}
+
 .signupHeader {
     display: flex;
     padding: 0.5rem 0.25rem;
@@ -134,12 +144,21 @@ html, body {
 .signupDomain {
     flex: 1;
     font-size: 1.2rem;
+    text-overflow: ellipsis;
+    white-space: initial;
+    overflow: hidden;
 }
 
 .signupInfo {
     display: none;
     animation: animateElement linear .1s;
     animation-iteration-count: 1;
+}
+
+.signupInfo div {
+    text-overflow: ellipsis;
+    white-space: initial;
+    overflow: hidden;
 }
 
 .show {

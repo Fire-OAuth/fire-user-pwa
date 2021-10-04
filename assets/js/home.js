@@ -97,6 +97,12 @@ document.querySelector(".showPreviousSignups").addEventListener("click", async (
 
         document.querySelector(".showPreviousSignups").remove()
 
+        html = `<div class="heading">Previous Signups</div>` + html
+
         document.querySelector(".signupsContainer").innerHTML = html
     })
+})
+
+document.getElementById("qrAuthorize").addEventListener("click", async () => {
+    window.location.href = "/qr.html"
 })
