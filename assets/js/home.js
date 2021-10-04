@@ -61,6 +61,18 @@ function getUserDetails() {
     })
 }
 
+async function getTransactions() {
+    return new Promise((resolve, reject) => {
+        transactionDb
+		.select()
+		.from(transaction)
+		.exec()
+        .then(res => {
+            resolve (res)
+        })
+    })
+}
+
 window.addEventListener("click", (e) => {
 	if (
 		e.target.classList.contains("signup") ||
