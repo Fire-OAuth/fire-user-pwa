@@ -55,19 +55,19 @@ function showListOfTransactions (data) {
 
         html += `<div class="signup" data-id="${token}">
                     <div class="signupHeader" data-id="${token}">
-                        <div class="signupDomain" data-id="${token}"> ${domain} </div>
+                        <div class="signupDomain" data-id="${token}"> <span>${domain}</span> </div>
                         <div class="signupTime" data-id="${token}"> ${timeAgo} </div>
                     </div>
                     <div class="signupInfo" data-id="${token}">
                         <div class="signUpInfoContainer" data-id="${token}">
                             <div class="fullSignupDomain" data-id="${token}">
-                                ${element.url}
+                                <span>${element.url}</span>
                             </div>
                             <div class="fullTimeContainer" data-id="${token}">
-                                ${new Date(element.time)}
+                                <span>${new Date(element.time)}</span>
                             </div>
                             <div class="signupMethod" data-id="${token}">
-                                Method: ${element.method}
+                                <span>Method: ${element.method}</span>
                             </div>
                         </div>
                     </div>
