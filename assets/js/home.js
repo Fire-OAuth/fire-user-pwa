@@ -95,6 +95,8 @@ document.querySelector(".showPreviousSignups").addEventListener("click", async (
         let data = await getTransactions()
         let html = showListOfTransactions(data)
 
+        document.querySelector(".showPreviousSignups").remove()
+
         document.querySelector(".signupsContainer").innerHTML = html
     })
 })
