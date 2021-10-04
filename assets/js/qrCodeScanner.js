@@ -38,11 +38,16 @@ let item
 let transactionDb
 let transaction
 
+qrcode.callback = async (data) => {
+	if (data) {
+		data = JSON.parse(data)
+
 		schemaBuilder.connect().then(async function (db) {
 			userDb = db
 			item = db.getSchema().table("User")
 			user = await getUserDetails()
 			if (user != undefined) {
+				let sessionId = data.sessionId
 				let fireServerURL = "http://localhost:3003"
 				let socket = io(fireServerURL)
 				socket.emit("join room", sessionId)
