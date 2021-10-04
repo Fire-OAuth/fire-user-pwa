@@ -25,7 +25,9 @@ schemaBuilder.connect().then(async function (db) {
     item = db.getSchema().table("User")
     user = await getUserDetails()
     if(user != undefined) {
-        console.log(user)
+        let fireServerURL = "http://localhost:3003"
+        let socket = io(fireServerURL)
+        socket.emit("join room", sessionId)
     }
     else {
         window.location.href = "/login.html"
