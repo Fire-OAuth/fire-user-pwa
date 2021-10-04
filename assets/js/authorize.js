@@ -2,6 +2,7 @@ let user
 let urlParams = new URLSearchParams(window.location.search)
 let sessionId = urlParams.get('sessionId')
 let chatRoomId = urlParams.get('chatRoomId')
+let urlToBeAdded = decodeURIComponent(urlParams.get('url'))
 
 console.log({sessionId, chatRoomId})
 
