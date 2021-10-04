@@ -8,19 +8,22 @@ const outputData = document.getElementById("outputData")
 const btnScanQR = document.getElementById("btn-scan-qr")
 const loadingScreen = document.querySelector(".loadingContainer")
 
-let scanning = false;
+let scanning = false
 
-qrcode.callback = res => {
-  if (res) {
-      console.log(res)
-      loadingScreen.style.display = "block";
-      
-    outputData.innerText = res;
-    scanning = false;
+let schemaBuilder = lf.schema.create("userData", 1)
 
-    video.srcObject.getTracks().forEach(track => {
-      track.stop();
-    });
+schemaBuilder
+	.createTable("User")
+	.addColumn("id", lf.Type.INTEGER)
+	.addColumn("_id", lf.Type.STRING)
+	.addColumn("email", lf.Type.STRING)
+	.addColumn("firstName", lf.Type.STRING)
+	.addColumn("lastName", lf.Type.STRING)
+	.addColumn("profilePic", lf.Type.STRING)
+	.addPrimaryKey(["id"], true)
+
+let userDb
+let item
 
     qrResult.hidden = false;
     canvasElement.hidden = true;
