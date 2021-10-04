@@ -44,30 +44,33 @@ function timeDifference(current, previous) {
 }
 
 function showListOfTransactions (data) {
-    let html
+    let html = ""
     data.forEach(element => {
 
         let domain = getDomain(element.url)
-        let timeAgo = timeDifference(new Date.now(), new Date(element.time))
+        let timeAgo = timeDifference(new Date(), new Date(element.time))
+        let token = element.token
 
-        html += `<div class="signup">
-        <div class="signupHeader">
-            <div class="signupDomain"> ${domain} </div>
-            <div class="signupTime"> 1h </div>
-        </div>
-        <div class="signupInfo">
-            <div class="signUpInfoContainer">
-                <div class="fullSignupDomain">
-                    ${element.url}
-                </div>
-                <div class="fullTimeContainer">
-                    ${element.time}
-                </div>
-                <div class="signupMethod">
-                    Method: ${element.method}
-                </div>
-            </div>
-        </div>
-    </div>`
+        html += `<div class="signup" data-id="${token}">
+                    <div class="signupHeader" data-id="${token}">
+                        <div class="signupDomain" data-id="${token}"> ${domain} </div>
+                        <div class="signupTime" data-id="${token}"> ${timeAgo} </div>
+                    </div>
+                    <div class="signupInfo" data-id="${token}">
+                        <div class="signUpInfoContainer" data-id="${token}">
+                            <div class="fullSignupDomain" data-id="${token}">
+                                ${element.url}
+                            </div>
+                            <div class="fullTimeContainer" data-id="${token}">
+                                ${element.time}
+                            </div>
+                            <div class="signupMethod" data-id="${token}">
+                                Method: ${element.method}
+                            </div>
+                        </div>
+                    </div>
+                </div>`
     });
+
+    return html
 }
