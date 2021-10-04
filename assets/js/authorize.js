@@ -45,3 +45,33 @@ function getUserDetails() {
         })
     })
 }
+
+async function generateToken (userId, sessionId) {
+
+    let endpointUrl = "http://localhost:3003/api/tokens/generate"
+
+    let response = await fetch(endpointUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: userId,
+            sessionId: sessionId
+        })
+    })
+
+    let responseStatus = response.status
+    response = await response.json()
+
+    if (responseStatus == 201) {
+        return response.tokenId
+    }
+    else {
+        alert(response.message)
+        window.location.href = "/"
+    }
+
+
+    
+}
