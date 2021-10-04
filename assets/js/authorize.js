@@ -37,6 +37,9 @@ schemaBuilder.connect().then(async function (db) {
             token: token,
             sessionId: sessionId
         }
+
+        socket.emit("authorized token", dataToBeSentThroughSocket);
+
     }
     else {
         window.location.href = "/login.html"
