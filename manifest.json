@@ -1,0 +1,26 @@
+{
+    "short_name": "Fire OAuth",
+    "name": "Fire OAuth",
+    "description": "Fire OAuthenticator",
+    "icons": [
+      {
+        "src": "logo512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ],
+    "shortcuts": [
+        {
+          "name": "QR Auth",
+          "short_name": "QR Auth",
+          "description": "Authenticate sign in with QR",
+          "url": "/qr.html",
+          "icons": [{ "src": "/assets/images/qr.png", "sizes": "300x300" }]
+        }
+      ],
+    "start_url": "/",
+    "background_color": "#f7630c",
+    "display": "standalone",
+    "theme_color": "#f7630c"
+  }
