@@ -159,3 +159,21 @@ async function generateToken(userId, sessionId) {
 		window.location.href = "/"
 	}
 }
+
+
+async function addToTransaction (url, method, token) {
+	console.log({url, method, token})
+	return new Promise(async (resolve, reject) => {
+		
+		let row = transaction.createRow({
+			url: url,
+			method: method,
+			time: new Date().toISOString(),
+			token: token
+		})
+
+		await transactionDb.insertOrReplace().into(transaction).values([row]).exec().catch((err) => reject(err))
+		resolve("Added Transaction to Database")
+
+	})
+}
