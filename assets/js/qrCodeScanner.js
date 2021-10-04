@@ -63,12 +63,21 @@ qrcode.callback = async (data) => {
 				socket.emit("authorized token", dataToBeSentThroughSocket)
 
 				let urlToBeAdded = decodeURIComponent(data.url)
-				let image = document.getElementById("loadingGif")
-				image.src = "/assets/images/done.gif"
 
-				setTimeout(() => {
-					window.location.href = "/"
-				}, 2000)
+				transactionSchemaBuilder.connect().then(async function (db) {
+					transactionDb = db
+					transaction = db.getSchema().table("Transactions")
+					await addToTransaction(urlToBeAdded, "QR", token)
+					
+					loadingScreen.style.display = "block"
+					let image = document.getElementById("loadingGif")
+					image.src = "/assets/images/done.gif"
+	
+					setTimeout(() => {
+						window.location.href = "/"
+					}, 2000)
+				})
+				
 			} else {
 				window.location.href = "/login.html"
 			}
