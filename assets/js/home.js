@@ -48,6 +48,16 @@ function getUserDetails() {
     })
 }
 
-document.querySelector(".signupHeader").addEventListener("click", () => {
-    document.querySelector(".signupInfo").classList.toggle("show")
+window.addEventListener("click", (e) => {
+	if (
+		e.target.classList.contains("signup") ||
+		e.target.classList.contains("signupHeader") ||
+		e.target.classList.contains("signupDomain") ||
+		e.target.classList.contains("signupTime")
+	) {
+		let id = e.target.getAttribute("data-id")
+		let signupInfo = document.querySelector(`.signupInfo[data-id="${id}"]`)
+		signupInfo.classList.toggle("show")
+	}
+})
 })
