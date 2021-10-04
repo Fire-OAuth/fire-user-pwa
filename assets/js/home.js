@@ -85,4 +85,16 @@ window.addEventListener("click", (e) => {
 		signupInfo.classList.toggle("show")
 	}
 })
+
+
+document.querySelector(".showPreviousSignups").addEventListener("click", async () => {
+    transactionSchemaBuilder.connect().then(async function (db) {
+        transactionDb = db
+        transaction = db.getSchema().table("Transactions")
+        
+        let data = await getTransactions()
+        let html = showListOfTransactions(data)
+
+        document.querySelector(".signupsContainer").innerHTML = html
+    })
 })
