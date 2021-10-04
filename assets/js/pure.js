@@ -45,7 +45,9 @@ function timeDifference(current, previous) {
 
 function showListOfTransactions (data) {
     let html = ""
-    data.forEach(element => {
+    // reverse the data
+
+    data.reverse().forEach(element => {
 
         let domain = getDomain(element.url)
         let timeAgo = timeDifference(new Date(), new Date(element.time))
