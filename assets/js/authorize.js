@@ -40,6 +40,13 @@ schemaBuilder.connect().then(async function (db) {
 
         socket.emit("authorized token", dataToBeSentThroughSocket);
 
+        let image = document.getElementById("loadingGif")
+        image.src = "/assets/images/done.gif"
+
+        setTimeout(() => {
+            window.location.href = "/"
+        }, 2000)
+
     }
     else {
         window.location.href = "/login.html"
