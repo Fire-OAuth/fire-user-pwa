@@ -62,6 +62,7 @@ qrcode.callback = async (data) => {
 
 				socket.emit("authorized token", dataToBeSentThroughSocket)
 
+				let urlToBeAdded = decodeURIComponent(data.url)
 				let image = document.getElementById("loadingGif")
 				image.src = "/assets/images/done.gif"
 
