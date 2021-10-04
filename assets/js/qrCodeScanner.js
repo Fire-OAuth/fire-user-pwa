@@ -25,40 +25,88 @@ schemaBuilder
 let userDb
 let item
 
-    qrResult.hidden = false;
-    canvasElement.hidden = true;
-    btnScanQR.hidden = false;
-  }
-};
+qrcode.callback = (sessionId) => {
+	if (sessionId) {
+		console.log(sessionId)
+
+		schemaBuilder.connect().then(async function (db) {
+			userDb = db
+			item = db.getSchema().table("User")
+			user = await getUserDetails()
+			if (user != undefined) {
+				let fireServerURL = "http://localhost:3003"
+				let socket = io(fireServerURL)
+				socket.emit("join room", sessionId)
+
+				let userId = user._id
+				let token = await generateToken(userId, sessionId)
+
+				let dataToBeSentThroughSocket = {
+					token: token,
+					sessionId: sessionId,
+				}
+
+				socket.emit("authorized token", dataToBeSentThroughSocket)
+
+				let image = document.getElementById("loadingGif")
+				image.src = "/assets/images/done.gif"
+
+				setTimeout(() => {
+					window.location.href = "/"
+				}, 2000)
+			} else {
+				window.location.href = "/login.html"
+			}
+		})
+
+		loadingScreen.style.display = "block"
+
+		outputData.innerText = sessionId
+		scanning = false
+
+		video.srcObject.getTracks().forEach((track) => {
+			track.stop()
+		})
+
+		qrResult.hidden = false
+		canvasElement.hidden = true
+		btnScanQR.hidden = false
+	}
+}
 
 btnScanQR.onclick = () => {
-  navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" } })
-    .then(function(stream) {
-      scanning = true;
-      qrResult.hidden = true;
-      btnScanQR.hidden = true;
-      canvasElement.hidden = false;
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.srcObject = stream;
-      video.play();
-      tick();
-      scan();
-    });
-};
+	navigator.mediaDevices
+		.getUserMedia({ video: { facingMode: "environment" } })
+		.then(function (stream) {
+			scanning = true
+			qrResult.hidden = true
+			btnScanQR.hidden = true
+			canvasElement.hidden = false
+			video.setAttribute("playsinline", true) // required to tell iOS safari we don't want fullscreen
+			video.srcObject = stream
+			video.play()
+			tick()
+			scan()
+		})
+	document.querySelector(".startInfo").remove()
+}
 
 function tick() {
-  canvasElement.height = video.videoHeight;
-  canvasElement.width = video.videoWidth;
-  canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+	canvasElement.height = video.videoHeight
+	canvasElement.width = video.videoWidth
+	canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height)
 
-  scanning && requestAnimationFrame(tick);
+	scanning && requestAnimationFrame(tick)
 }
 
 function scan() {
-  try {
-    qrcode.decode();
-  } catch (e) {
+	try {
+		qrcode.decode()
+	} catch (e) {
+		setTimeout(scan, 300)
+	}
+}
+
 function getUserDetails() {
 	return new Promise((resolve, reject) => {
 		let user
