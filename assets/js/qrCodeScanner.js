@@ -74,7 +74,7 @@ qrcode.callback = async (data) => {
 					image.src = "/assets/images/done.gif"
 	
 					setTimeout(() => {
-						window.location.href = "/"
+						window.close()
 					}, 2000)
 				})
 				

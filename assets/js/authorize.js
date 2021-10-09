@@ -63,7 +63,7 @@ schemaBuilder.connect().then(async function (db) {
             image.src = "/assets/images/done.gif"
 
             setTimeout(() => {
-                window.location.href = "/"
+                window.close()
             }, 2000)
         })
     }
