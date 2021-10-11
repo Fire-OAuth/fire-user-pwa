@@ -1,3 +1,6 @@
+let fireServerURL = "http://localhost:3003"
+let endpointUrl = "http://localhost:3003/api/tokens/generate"
+
 let user
 let urlParams = new URLSearchParams(window.location.search)
 let sessionId = urlParams.get('sessionId')
@@ -40,7 +43,6 @@ schemaBuilder.connect().then(async function (db) {
     user = await getUserDetails()
     if(user != undefined) {
 
-        let fireServerURL = "http://localhost:3003"
         let socket = io(fireServerURL)
         socket.emit("join room", sessionId)
 
@@ -87,8 +89,6 @@ function getUserDetails() {
 }
 
 async function generateToken (userId, sessionId) {
-
-    let endpointUrl = "http://localhost:3003/api/tokens/generate"
 
     let response = await fetch(endpointUrl, {
         method: 'POST',
