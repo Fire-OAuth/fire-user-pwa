@@ -1,5 +1,5 @@
+let fireServerURL = 'http://localhost:3003/api/users'
 let user
-
 let schemaBuilder = lf.schema.create("userData", 1)
 
 schemaBuilder
@@ -39,7 +39,6 @@ async function submitForm (type) {
         }
     }
 
-    let fireServerURL = 'http://localhost:3003/api/users'
     let endpoint = type == 'login' ? 'login' : 'register'
 
 
