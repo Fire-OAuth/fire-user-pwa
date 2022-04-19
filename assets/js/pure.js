@@ -1,3 +1,44 @@
+async function getUserDetails() {
+    return await localforage.getItem('user')
+}
+
+async function getTransactions() {
+    return await localforage.getItem('transactions')
+}
+
+async function addToTransaction(url, method, token) {
+    let data = { url, method, token }
+    let existing = await getTransactions()
+    existing.push(data)
+    await localforage.setItem('transactions', existing)
+} 
+
+
+async function generateToken (userId, sessionId) {
+
+    let response = await fetch(endpointUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: userId,
+            sessionId: sessionId
+        })
+    })
+
+    let responseStatus = response.status
+    response = await response.json()
+
+    if (responseStatus == 201) {
+        return response.tokenId
+    }
+    else {
+        alert(response.message)
+        window.location.href = "/"
+    }
+}
+
 function returnUserCard(user) {
 	return `<div class="userContainer">
                 <div class="transparentCard">
