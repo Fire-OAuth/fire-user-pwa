@@ -9,6 +9,7 @@ async function getTransactions() {
 async function addToTransaction(url, method, token) {
     let data = { url, method, token }
     let existing = await getTransactions()
+    if(existing == null) existing = []
     existing.push(data)
     await localforage.setItem('transactions', existing)
 } 
