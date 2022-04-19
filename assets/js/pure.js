@@ -44,6 +44,9 @@ function timeDifference(current, previous) {
 }
 
 function showListOfTransactions (data) {
+
+    if (data == null || data.length == 0) return ""
+
     let html = ""
     // reverse the data
 
