@@ -7,7 +7,7 @@ async function getTransactions() {
 }
 
 async function addToTransaction(url, method, token) {
-    let data = { url, method, token }
+    let data = { url, method, token, time: new Date().toISOString() }
     let existing = await getTransactions()
     if(existing == null) existing = []
     existing.push(data)
