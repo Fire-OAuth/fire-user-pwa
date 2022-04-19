@@ -1,90 +1,160 @@
-/**
- * Unlike most Service Workers, this one always attempts to download assets
- * from the network. Only when network access fails do we fallback to using
- * the cache. When a request succeeds we always update the cache with the new
- * version. If a request fails and the result isn't in the cache then we
- * display an Offline page.
- */
- const CACHE = "content-v1"; // name of the current cache
- const OFFLINE = "/offline.html"; // URL to offline HTML document
- 
- const AUTO_CACHE = [
-     // URLs of assets to immediately cache
-     OFFLINE,
-     "/",
-     "/manifest.json",
-     "/logo512.png",
-     "/favicon.ico",
-     "/qr.html",
-     "/authorize.html",
-     "/apple-touch-icon.png",
- ];
- 
- // Iterate AUTO_CACHE and add cache each entry
- self.addEventListener("install", (event) => {
-     event.waitUntil(
-         caches
-             .open(CACHE)
-             .then((cache) => cache.addAll(AUTO_CACHE))
-             .then(self.skipWaiting())
-     );
- });
- 
- // Destroy inapplicable caches
- self.addEventListener("activate", (event) => {
-     event.waitUntil(
-         caches
-             .keys()
-             .then((cacheNames) => {
-                 return cacheNames.filter((cacheName) => CACHE !== cacheName);
-             })
-             .then((unusedCaches) => {
-                 console.log("DESTROYING CACHE", unusedCaches.join(","));
-                 return Promise.all(
-                     unusedCaches.map((unusedCache) => {
-                         return caches.delete(unusedCache);
-                     })
-                 );
-             })
-             .then(() => self.clients.claim())
-     );
- });
- 
- self.addEventListener("fetch", (event) => {
-     if (
-         !event.request.url.startsWith(self.location.origin) ||
-         event.request.method !== "GET"
-     ) {
-         // External request, or POST, ignore
-         return void event.respondWith(fetch(event.request));
-     }
- 
-     event.respondWith(
-         // Always try to download from server first
-         fetch(event.request)
-             .then((response) => {
-                 // When a download is successful cache the result
-                 caches.open(CACHE).then((cache) => {
-                     cache.put(event.request, response);
-                 });
-                 // And of course display it
-                 return response.clone();
-             })
-             .catch((_err) => {
-                 // A failure probably means network access issues
-                 // See if we have a cached version
-                 return caches.match(event.request).then((cachedResponse) => {
-                     if (cachedResponse) {
-                         // We did have a cached version, display it
-                         return cachedResponse;
-                     }
- 
-                     // We did not have a cached version, display offline page
-                     return caches.open(CACHE).then((cache) => {
-                         const offlineRequest = new Request(OFFLINE);
-                         return cache.match(offlineRequest);
-                     });
-                 });
-             })
-     );
- });
+importScripts("/assets/js/localforage.js")
+importScripts("/assets/js/pure.js")
+
+const CACHE = "content-v2" // name of the current cache
+const OFFLINE = "/offline.html" // URL to offline HTML document
+const AVATARS = "avatars"
+const CDNS = "cdns"
+const DEFAULT_AVATAR = "/assets/logo512.png"
+const AUTO_CACHE = [
+    OFFLINE,
+    "/",
+    "/logo512.png",
+    "/favicon.ico",
+    "/qr.html",
+    "/login.html",
+    "/register.html",
+    "/authorize.html",
+    "/apple-touch-icon.png",
+	"./site.webmanifest",
+    
+    "/assets/js/localforage.js",
+    "/assets/js/pure.js",
+    "/assets/js/qrCodeScanner.js",
+    "/assets/js/authorize.js",
+    "/assets/js/home.js",
+    "/assets/js/qr.js",
+    "/assets/js/sitepointqr.js",
+
+    "/assets/css/authorize.css",
+    "/assets/css/home.css",
+    "/assets/css/login.css",
+    "/assets/css/qr.css",
+
+    "/assets/images/done.gif",
+    "/assets/images/loading.gif",
+    "/assets/images/qr.png",
+    "/assets/images/registrationsuccess.gif",
+
+
+]
+
+self.addEventListener("install", (event) => {
+	event.waitUntil(
+		caches
+			.open(CACHE)
+			.then((cache) => cache.addAll(AUTO_CACHE))
+			.then(self.skipWaiting())
+	)
+})
+
+self.addEventListener("activate", (event) => {
+	event.waitUntil(
+		caches
+			.keys()
+			.then((cacheNames) => {
+				return cacheNames.filter((cacheName) => CACHE !== cacheName && AVATARS !== cacheName)
+			})
+			.then((unusedCaches) => {
+				console.log("DESTROYING CACHE", unusedCaches.join(","))
+				return Promise.all(
+					unusedCaches.map((unusedCache) => {
+						return caches.delete(unusedCache)
+					})
+				)
+			})
+			.then(() => self.clients.claim())
+	)
+})
+
+function isCached(url) {
+	let origin = self.location.origin
+	if (url.includes("assets")) return true
+	if (url == `${origin}/`) return true
+	if (url.includes("logo.png") || url.includes("favicon.ico") || url.includes("site.webmanifest")) return true
+	return false
+}
+
+self.addEventListener("fetch", (event) => {
+
+	if (event.request.url.includes("avatars.dicebear.com")) {
+		event.respondWith(
+			caches.open(AVATARS).then((cache) => {
+				return cache.match(event.request).then((response) => {
+					if (response) return response
+					return fetch(event.request).then((response) => {
+						cache.put(event.request, response.clone())
+						return response
+					}).catch(() => {
+						return caches.match(DEFAULT_AVATAR)
+					})
+				})
+			})
+		)
+		return
+	}
+
+    if (event.request.url.includes("cdnjs.cloudflare.com")) {
+        event.respondWith(
+            caches.open(CDNS).then((cache) => {
+                return cache.match(event.request).then((response) => {
+                    if (response) return response
+                    return fetch(event.request).then((response) => {
+                        cache.put(event.request, response.clone())
+                        return response
+                    })
+                })
+            })
+        )
+        return
+    }
+
+	if (
+		!event.request.url.startsWith(self.location.origin) ||
+		event.request.method !== "GET"
+	) {
+		return void event.respondWith(fetch(event.request).catch((err) => console.log(err)))
+	}
+
+	if(!isCached(event.request.url)){
+		event.respondWith(
+			
+			fetch(event.request)
+			.then((response) => {
+				caches.open(CACHE).then((cache) => {
+					cache.put(event.request, response)
+				})
+				return response.clone()
+			})
+			.catch((_err) => {
+				return caches.match(event.request).then((cachedResponse) => {
+					if (cachedResponse) {
+						return cachedResponse
+					}
+
+					return caches.open(CACHE).then((cache) => {
+						const offlineRequest = new Request(OFFLINE)
+						return cache.match(offlineRequest)
+					})
+				})
+			})
+			
+		)
+	} else {
+		event.respondWith(
+			caches.match(event.request).then((response) => {
+				if (response) {
+					return response
+				}
+
+				return fetch(event.request).then((response) => {
+					caches.open(CACHE).then((cache) => {
+						cache.put(event.request, response)
+					})
+					return response.clone()
+				})
+			})
+		)
+	}
+
+})
