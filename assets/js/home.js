@@ -45,7 +45,7 @@ document.querySelector(".showPreviousSignups").addEventListener("click", async (
 })
 
 document.getElementById("qrAuthorize").addEventListener("click", async () => {
-    window.location.href = "/qr"
+    window.open("/qr", "_blank")
 })
 
 main()
