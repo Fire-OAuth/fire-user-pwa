@@ -17,7 +17,11 @@ qrcode.callback = async (data) => {
 		
 		data = JSON.parse(data)
 
+		NProgress.set(0.7)
+
 		user = await getUserDetails()
+
+		NProgress.set(0.8)
 		
 		if (user != null || user != undefined) {
 			let sessionId = data.sessionId
@@ -33,6 +37,8 @@ qrcode.callback = async (data) => {
 			}
 
 			socket.emit("authorized token", dataToBeSentThroughSocket)
+
+			NProgress.done()
 
 			let urlToBeAdded = decodeURIComponent(data.url)
 			

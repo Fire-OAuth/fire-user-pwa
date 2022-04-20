@@ -27,6 +27,7 @@ const AUTO_CACHE = [
     "/assets/js/login.js",
     "/assets/js/sitepointqr.js",
     "/assets/js/endpoints.js",
+    "/assets/js/nprogress.js",
 
     "/assets/css/authorize.css",
     "/assets/css/home.css",
