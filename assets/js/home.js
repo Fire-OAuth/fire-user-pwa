@@ -7,7 +7,7 @@ async function main () {
         document.querySelector(".userCard").innerHTML = returnUserCard(user)
         document.querySelector(".loading").remove()
     } else {
-        window.location.href = "/login.html"
+        window.location.href = "/login"
     }
 }
 
@@ -45,7 +45,7 @@ document.querySelector(".showPreviousSignups").addEventListener("click", async (
 })
 
 document.getElementById("qrAuthorize").addEventListener("click", async () => {
-    window.location.href = "/qr.html"
+    window.location.href = "/qr"
 })
 
 main()

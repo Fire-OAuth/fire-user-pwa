@@ -48,7 +48,7 @@ qrcode.callback = async (data) => {
 			}, 2000)
 			
 		} else {
-			window.location.href = "/login.html"
+			window.location.href = "/login"
 		}
 		
 		video.srcObject.getTracks().forEach((track) => {

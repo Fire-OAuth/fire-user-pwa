@@ -35,7 +35,7 @@ async function main () {
         }, 2000)
 
     } else {
-        window.location.href = "/login.html"
+        window.location.href = "/login"
 
     }
 }
