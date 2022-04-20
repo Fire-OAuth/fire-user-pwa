@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
 	font-family: sans-serif;
 	height: 100%;
 	margin: 0;
-    overflow-x: hidden;
-    position: relative;
+	overflow-x: hidden;
+	position: relative;
 }
 
 h1 {
@@ -12,28 +13,36 @@ h1 {
 }
 
 .loadingContainer {
-    display: none;
+	display: none;
 }
 
 .loading {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    z-index: 9999;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: white;
+	z-index: 9999;
 }
 
 #container {
-    min-width: 300px;
+	min-width: 300px;
 	text-align: center;
 	margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 
 #qr-canvas {
@@ -47,10 +56,10 @@ h1 {
 }
 
 #btn-scan-qr img {
-    height: 10em;
-    padding: 5px;
-    background: white;
-    border: 1px solid #44444420;
+	height: 10em;
+	padding: 5px;
+	background: white;
+	border: 1px solid #44444420;
 }
 
 #qr-result {
@@ -62,6 +71,6 @@ h1 {
 }
 
 .startInfo {
-    font-size: 1.2em;
-    padding: 20px;
+	font-size: 1.2em;
+	padding: 20px;
 }

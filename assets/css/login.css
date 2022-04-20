@@ -16,22 +16,31 @@ a {
 .wrapper {
 	margin-top: 0;
 	height: 100%;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
 }
 
 .loading {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: #fbfbf3;
-    z-index: 9999;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	display: none;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: #fbfbf3;
+	z-index: 9999;
 }
-
 
 .loginContainer {
 	padding: 1.5rem;
@@ -52,13 +61,18 @@ h1 {
 }
 
 form {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 }
 
 .errorMessage {
 	color: red;
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 input[type="text"],
@@ -81,7 +95,8 @@ input[type="submit"] {
 	height: 2rem;
 }
 
-input[type="submit"]:hover, input[type="submit"]:focus {
+input[type="submit"]:hover,
+input[type="submit"]:focus {
 	background-color: hsl(204, 100%, 30%);
 }
 
@@ -92,8 +107,14 @@ input[type="submit"]:hover, input[type="submit"]:focus {
 	.loginContainer {
 		width: 100vw;
 		height: 99vh;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-ms-flex-pack: distribute;
 		justify-content: space-around;
 		padding: 0 1.5rem;
 		box-shadow: 0 0 0 0px rgb(0 0 0 / 10%);
