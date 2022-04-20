@@ -1,5 +1,4 @@
-let fireServerURL = "http://localhost:3003"
-let endpointUrl = "http://localhost:3003/api/tokens/generate"
+// DOM Import fireServerURL && endpointUrl from assets\js\endpoints.js
 
 let user = null
 let urlParams = new URLSearchParams(window.location.search)

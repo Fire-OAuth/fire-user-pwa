@@ -1,5 +1,6 @@
-let fireServerURL = 'http://localhost:3003/api/users'
+// DOM Import fireServerURL && endpointUrl from assets\js\endpoints.js
 
+fireServerURL = `${fireServerURL}/api/users`
 async function submitForm (type) {
 
     try {
