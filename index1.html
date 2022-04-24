@@ -8,9 +8,9 @@
     <meta name="keywords" content="Fire PWA, OAuth">
     <meta name="theme-color" content="#FFFFFF">
     <meta name="description" content="Fire OAuthenticator PWA">
-    <link rel="stylesheet" href="/assets/css/sample.css">
     <link rel="manifest" href="/site.webmanifest">
     <title>Fire OAuthenticator</title>
+
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -18,13 +18,35 @@
     <script>if(window.location.hostname !== 'localhost') {if (location.protocol !== 'https:') {location.replace(`https:${location.href.substring(location.protocol.length)}`)}};</script>
 </head>
 <body>
+    <div class="loading">
+        <img src="/assets/images/loading.gif" alt="Loading">
+    </div>
     <div class="wrapper">
-        <img src="/logo512.png" alt="Fire OAuth" height="150" width="150">
-        <span class="welcome">Welcome to Fire OAuth 🔥</span>
-
-        <span class="message">Authentication Successful!</span>
+        <div class="firstPart">
+            <div class="userCard centering">
+            </div>
+    
+            <div class="qrCode centering">
+                <button id="qrAuthorize" class="fire">
+                    <p>Authorize with QR Code</p>
+                    <img src="assets/images/qr.png" alt="Authorize with QR">
+                </button>
+            </div>
+        </div>
+        <div class="secondPart">
+            <div class="signupsButtonContainer centering">
+                <button class="showPreviousSignups">Show Previous Signups</button>
+            </div>
+            <div class="signupsContainer">
+                <div class="signup" style="display: none;"></div>
+            </div>
+        </div>
     </div>
     
+    <script src="/assets/js/endpoints.js"></script>
+    <script src="/assets/js/localforage.js"></script>
+    <script src="/assets/js/pure.js"></script>
+    <script src="/assets/js/home.js"></script>
     <script>
         if('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
