@@ -33,16 +33,16 @@ window.addEventListener("click", (e) => {
 })
 
 
-document.querySelector(".showPreviousSignups").addEventListener("click", async () => {
-    let data = await getTransactions()
-    let html = showListOfTransactions(data)
+// document.querySelector(".showPreviousSignups").addEventListener("click", async () => {
+//     let data = await getTransactions()
+//     let html = showListOfTransactions(data)
 
-    document.querySelector(".showPreviousSignups").remove()
+//     document.querySelector(".showPreviousSignups").remove()
 
-    html = `<div class="heading">Previous Signups</div>` + html
+//     html = `<div class="heading">Previous Signups</div>` + html
 
-    document.querySelector(".signupsContainer").innerHTML = html
-})
+//     document.querySelector(".signupsContainer").innerHTML = html
+// })
 
 document.getElementById("qrAuthorize").addEventListener("click", async () => {
     window.open("/qr", "_blank")

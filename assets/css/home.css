@@ -25,7 +25,7 @@ body {
 }
 
 .wrapper {
-	height: 100%;
+	min-height: 100vh;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -63,12 +63,11 @@ body {
 	-ms-flex-pack: center;
 	justify-content: center;
 	padding: 1rem;
-	-webkit-box-shadow: rgb(0 0 0 / 5%) 0px 0rem 0rem 1px,
-		rgb(0 0 0 / 5%) 0px 0rem 0.2rem, rgb(0 0 0 / 5%) 0px 0.5rem 1.5rem;
-	box-shadow: rgb(0 0 0 / 5%) 0px 0rem 0rem 1px,
-		rgb(0 0 0 / 5%) 0px 0rem 0.2rem, rgb(0 0 0 / 5%) 0px 0.5rem 1.5rem;
+
+	box-shadow: -17px 20px 15px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
 	border: 0;
 	border-radius: 0.5rem;
+	background-color: white;
 }
 
 .transparentCard {
@@ -78,32 +77,84 @@ body {
 }
 
 .transparentCard img {
-	position: absolute;
-	bottom: -20px;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	transform: translateX(-50%);
+	/* position: absolute; */
+	/* bottom: -20px; */
+	/* left: 50%; */
+	/* -webkit-transform: translateX(-50%); */
+	/* transform: translateX(-50%); */
 	height: 15vh;
 	width: 15vh;
 }
 
 .userCard {
 	text-align: center;
-	padding-top: 4rem;
+	/* padding-top: 4rem; */
 	font-size: 1.5rem;
 }
 
 .userCard a {
 	text-decoration: none;
-	color: #3498db;
+	color: #0070f3;
+	font-weight: 500;
+	max-width: 80vw;
+}
+
+.name {
+	font-weight: 400;
+}
+
+.emailLink {
+	display: inline-block;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: top;
+}
+
+.main {
+	padding-top: 2rem;
+	z-index: 5;
+	position: relative;
+}
+
+.topBanner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 1rem;
+}
+
+.historyLogo {
+	padding: 1rem;
+}
+
+.bottomBannerBlue {
+	position: absolute;
+	bottom: -15px;
 }
 
 .qrCode {
-	padding-top: 2rem;
+	max-width: 80vw;
+	margin: auto;
 }
 
-#qrAuthorize,
+#qrAuthorize {
+	background-color: #0070f3;
+	border: 1px solid #f8f9fa;
+	border-radius: 5%;
+	padding: 0.5rem;
+	font-family: system-ui;
+	min-width: 54px;
+	text-align: center;
+	cursor: pointer;
+	/* max-width: 80vw; */
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .showPreviousSignups {
 	background-color: #f8f9fa;
 	border: 1px solid #f8f9fa;
@@ -124,17 +175,20 @@ body {
 }
 
 #qrAuthorize p {
-	margin: 0;
-	padding: 0.5rem;
-	font-weight: 300;
-	font-size: 1.2rem;
+	margin: 0 auto;
+	padding: 0 0 0.4em;
+	font-weight: 500;
+	font-size: 1.6rem;
+	color: white;
+	max-width: 14ch;
 }
 
 #qrAuthorize img {
-	height: 10rem;
-	width: 10rem;
-	margin-bottom: 0.5rem;
-	border-radius: 8px;
+	height: 13rem;
+	width: 13rem;
+	margin-top: 1rem;
+	padding: 0.5rem 2rem;
+	border-radius: 58%;
 }
 
 .showPreviousSignups {
@@ -148,7 +202,6 @@ body {
 	width: clamp(300px, 90%, 750px);
 	margin: 0 auto;
 	padding-top: 2rem;
-	padding-bottom: 2rem;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -249,21 +302,29 @@ body {
 	}
 }
 
-.fire {
-	background-color: #f8f9fa;
-	border: 1px solid #f8f9fa;
-	border-radius: 4px;
-	color: #3c4043;
-	font-family: arial, sans-serif;
-	font-size: 14px;
-	margin: 11px 4px;
-	padding: 0 16px;
-	line-height: 27px;
-	min-width: 54px;
-	text-align: center;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+.logoThing {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.logoThing span {
+	font-size: 2rem;
+	font-weight: 500;
+	color: white;
+	text-shadow: 3px 3px 0px #4d5eb3;
+}
+
+.cover {
+	background-color: #0070f3;
+	position: relative;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	padding-bottom: 2.8rem;
+}
+
+@media screen and (max-width: 480px) {
+	.userContainer {
+		min-width: 80vw;
+	}
 }

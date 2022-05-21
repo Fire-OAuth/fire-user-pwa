@@ -24,31 +24,47 @@
     </div>
     <div class="wrapper">
         <div class="firstPart">
-            <div class="userCard centering">
+            <div class="cover">
+                <div class="topBanner">
+                    <div class="logoThing">
+                        <img src="/transparent.png" height="80" width="80" alt="Fire OAuthenticator">
+                        <span>Fire OAuth</span>
+                    </div>
+                    <div class="historyLogo">
+                        <img src="/assets/images/history.svg" height="50" width="50" alt="History">
+                    </div>
+                </div>
+    
+                <div class="userCard main centering">
+                </div>
+
+                <div class="bottomBannerBlue">
+                    <img src="/assets/images/bluewave.png" alt="Blue Wave">
+                </div>
             </div>
     
             <div class="qrCode centering">
                 <button id="qrAuthorize" class="fire">
-                    <p>Authorize with QR Code</p>
                     <img src="assets/images/qr.png" alt="Authorize with QR">
+                    <p>Authorize with QR Code</p>
                 </button>
             </div>
         </div>
-        <div class="secondPart">
+        <!-- <div class="secondPart">
             <div class="signupsButtonContainer centering">
                 <button class="showPreviousSignups">Show Previous Signups</button>
             </div>
             <div class="signupsContainer">
                 <div class="signup" style="display: none;"></div>
             </div>
-        </div>
+        </div> -->
     </div>
     
     <script src="/assets/js/endpoints.js"></script>
     <script src="/assets/js/localforage.js"></script>
     <script src="/assets/js/pure.js"></script>
     <script src="/assets/js/home.js"></script>
-    <script>
+    <!-- <script>
         if('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('serviceworker.js')
@@ -56,6 +72,6 @@
                     .catch((err) => console.log('Failure: ', err));
             })
         }
-    </script>
+    </script> -->
 </body>
 </html>

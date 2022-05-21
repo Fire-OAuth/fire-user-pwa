@@ -10,6 +10,7 @@ const AUTO_CACHE = [
     OFFLINE,
     "/",
     "/logo512.png",
+    "/transparent.png",
     "/favicon.ico",
     "/qr",
     "/login",
@@ -36,8 +37,10 @@ const AUTO_CACHE = [
 
     "/assets/images/done.gif",
     "/assets/images/loading.gif",
-    "/assets/images/qr.png",
     "/assets/images/registrationsuccess.gif",
+    "/assets/images/qr.png",
+    "/assets/images/bluewave.png",
+    "/assets/images/history.svg",
 
 
 ]
