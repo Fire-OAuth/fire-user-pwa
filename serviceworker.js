@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/pure.js")
 
-const CACHE = "content-v6" // name of the current cache
+const CACHE = "content-v7" // name of the current cache
 const OFFLINE = "/offline.html" // URL to offline HTML document
 const AVATARS = "avatars"
 const CDNS = "cdns"

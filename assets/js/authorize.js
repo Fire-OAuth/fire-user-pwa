@@ -30,7 +30,11 @@ async function main () {
         image.src = "/assets/images/done.gif"
 
         setTimeout(() => {
-            window.close()
+            try {
+                window.close()
+            } catch (err) {
+                window.location.href = "/"
+            }
         }, 2000)
 
     } else {
