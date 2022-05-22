@@ -106,7 +106,7 @@ function showListOfTransactions (data) {
                     <div class="signupInfo" data-id="${token}">
                         <div class="signUpInfoContainer" data-id="${token}">
                             <div class="fullSignupDomain" data-id="${token}">
-                                <span>${element.url}</span>
+                                <a href="${element.url}">${element.url}</a>
                             </div>
                             <div class="fullTimeContainer" data-id="${token}">
                                 <span>${new Date(element.time)}</span>
