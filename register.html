@@ -2,10 +2,11 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Login to Fire 🔥" />
+		<meta name="description" content="Signup to Fire 🔥" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Log in to Fire 🔥</title>
+		<title>Signup to Fire 🔥</title>
         <link rel="stylesheet" href="/assets/css/login.css" />
+        <link rel="stylesheet" href="/assets/css/nprogress.css">
         <script>if(window.location.hostname !== 'localhost') {if (location.protocol !== 'https:') {location.replace(`https:${location.href.substring(location.protocol.length)}`)}};</script>
 	</head>
 	<body>
@@ -15,6 +16,7 @@
 		<div class="wrapper">
             <div class="loginContainer">
                 <h1>Register</h1>
+                <img class="authenticating" src="/transparent.png" alt="Authenticating..." height="150" width="150">
                 <form method="post" onsubmit="submitForm('register'); return false">
                     <p class="errorMessage"></p>
                     <input
@@ -55,6 +57,7 @@
 
         <script src="/assets/js/endpoints.js"></script>
         <script src="/assets/js/localforage.js"></script>
+        <script src="/assets/js/localforage.js"></script> 
         <script src="/assets/js/pure.js"></script>
         <script src="/assets/js/login.js"></script>
 

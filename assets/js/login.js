@@ -1,9 +1,11 @@
 // DOM Import fireServerURL && endpointUrl from assets\js\endpoints.js
-
 fireServerURL = `${fireServerURL}/api/users`
+
+let authenticating = document.querySelector(".authenticating")
 async function submitForm (type) {
 
     try {
+        authenticating.src = "/assets/images/authorizing.gif"
         let data = {}
 
         if(type == 'login') {
@@ -53,6 +55,8 @@ async function submitForm (type) {
     } catch (error) {
         console.log(error)
         document.querySelector(".errorMessage").innerHTML = "Something Happened. Try Again Later";
+        authenticating.src = "/transparent.png"
+
     }
     
     return false;

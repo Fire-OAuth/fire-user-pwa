@@ -10,7 +10,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: #1967d2;
+	color: #0070f3;
 }
 
 .wrapper {
@@ -58,6 +58,13 @@ a {
 
 h1 {
 	margin-bottom: 1rem;
+	font-size: 3rem;
+}
+
+.authenticating {
+	display: block;
+	border-radius: 1.5rem;
+	margin: 0 auto;
 }
 
 form {
@@ -87,12 +94,13 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-	background-color: #0099ff;
+	background-color: #0070f3;
 	color: #ffffff;
 	border: none;
 	border-radius: 0.3rem;
 	margin-bottom: 0.8rem;
 	height: 2rem;
+	cursor: pointer;
 }
 
 input[type="submit"]:hover,
