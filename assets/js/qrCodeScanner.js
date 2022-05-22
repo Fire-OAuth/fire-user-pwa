@@ -4,6 +4,8 @@ let user = null
 const video = document.createElement("video")
 const canvasElement = document.getElementById("qr-canvas")
 const canvas = canvasElement.getContext("2d")
+const title = document.querySelector(".title")
+const authenticating = document.querySelector(".authenticating")
 
 const qrResult = document.getElementById("qr-result")
 const outputData = document.getElementById("outputData")
@@ -21,36 +23,58 @@ qrcode.callback = async (data) => {
 
 		user = await getUserDetails()
 
+		
 		NProgress.set(0.8)
 		
 		if (user != null || user != undefined) {
-			let sessionId = data.sessionId
-			let socket = io(fireServerURL)
-			socket.emit("join room", sessionId)
-
-			let userId = user._id
-			let token = await generateToken(userId, sessionId)
-
-			let dataToBeSentThroughSocket = {
-				token: token,
-				sessionId: sessionId,
-			}
-
-			socket.emit("authorized token", dataToBeSentThroughSocket)
-
-			NProgress.done()
-
-			let urlToBeAdded = decodeURIComponent(data.url)
 			
-			await addToTransaction(urlToBeAdded, "QR", token)
+			canvasElement.style.display = "none"
+			authenticating.style.display = "block"
+			title.innerHTML = "Creating OAuth Tokens..."
 
-			loadingScreen.style.display = "block"
-			let image = document.getElementById("loadingGif")
-			image.src = "/assets/images/done.gif"
+			try {
+				let sessionId = data.sessionId
 
-			setTimeout(() => {
-				window.close()
-			}, 2000)
+				if(sessionId == null || sessionId == undefined) {
+					title.innerHTML = "Invalid QR Code"
+					return
+				}
+
+				let socket = io(fireServerURL)
+				socket.emit("join room", sessionId)
+
+				let userId = user._id
+				let token = await generateToken(userId, sessionId)
+
+				let dataToBeSentThroughSocket = {
+					token: token,
+					sessionId: sessionId,
+				}
+
+				title.innerHTML = "Authenticating with Fire Servers..."
+
+				socket.emit("authorized token", dataToBeSentThroughSocket)
+
+				NProgress.done()
+
+				let urlToBeAdded = decodeURIComponent(data.url)
+				
+				await addToTransaction(urlToBeAdded, "QR", token)
+
+				loadingScreen.style.display = "block"
+				let image = document.getElementById("loadingGif")
+				image.src = "/assets/images/done.gif"
+
+				setTimeout(() => {
+					try {
+						window.close()
+					} catch (error) {
+						window.location.href = "/"
+					}
+				}, 2000)
+			} catch (err) {
+				window.location.reload()
+			}
 			
 		} else {
 			window.location.href = "/login"
@@ -63,7 +87,7 @@ qrcode.callback = async (data) => {
 	}
 }
 
-btnScanQR.onclick = () => {
+async function main() {
 	navigator.mediaDevices
 		.getUserMedia({ video: { facingMode: "environment" } })
 		.then(function (stream) {
@@ -77,7 +101,10 @@ btnScanQR.onclick = () => {
 			tick()
 			scan()
 		})
-	document.querySelector(".startInfo").remove()
+
+}
+
+btnScanQR.onclick = () => {
 }
 
 function tick() {
@@ -95,3 +122,5 @@ function scan() {
 		setTimeout(scan, 300)
 	}
 }
+
+main()
