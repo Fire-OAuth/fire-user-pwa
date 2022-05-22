@@ -11,41 +11,12 @@ async function main () {
     }
 }
 
-async function getUserDetails() {
-    return await localforage.getItem('user')
-}
-
-async function getTransactions() {
-    return await localforage.getItem('transactions')
-}
-
-window.addEventListener("click", (e) => {
-	if (
-		e.target.classList.contains("signup") ||
-		e.target.classList.contains("signupHeader") ||
-		e.target.classList.contains("signupDomain") ||
-		e.target.classList.contains("signupTime")
-	) {
-		let id = e.target.getAttribute("data-id")
-		let signupInfo = document.querySelector(`.signupInfo[data-id="${id}"]`)
-		signupInfo.classList.toggle("show")
-	}
-})
-
-
-// document.querySelector(".showPreviousSignups").addEventListener("click", async () => {
-//     let data = await getTransactions()
-//     let html = showListOfTransactions(data)
-
-//     document.querySelector(".showPreviousSignups").remove()
-
-//     html = `<div class="heading">Previous Signups</div>` + html
-
-//     document.querySelector(".signupsContainer").innerHTML = html
-// })
-
 document.getElementById("qrAuthorize").addEventListener("click", async () => {
     window.open("/qr", "_blank")
+})
+
+document.querySelector(".historyLogo").addEventListener("click", async () => {
+    window.location.href = "/history"
 })
 
 main()
