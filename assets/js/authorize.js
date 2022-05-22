@@ -24,7 +24,7 @@ async function main () {
 
         socket.emit("authorized token", dataToBeSentThroughSocket);
 
-        await addToTransaction(urlToBeAdded, "Link", token)
+        await addToTransaction(urlToBeAdded, "OAuth Link", token)
 
         let image = document.getElementById("loadingGif")
         image.src = "/assets/images/done.gif"
