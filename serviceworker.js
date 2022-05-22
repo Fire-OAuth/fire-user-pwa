@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/pure.js")
 
-const CACHE = "content-v4" // name of the current cache
+const CACHE = "content-v5" // name of the current cache
 const OFFLINE = "/offline.html" // URL to offline HTML document
 const AVATARS = "avatars"
 const CDNS = "cdns"
@@ -13,6 +13,7 @@ const AUTO_CACHE = [
     "/transparent.png",
     "/favicon.ico",
     "/qr",
+    "/history",
     "/login",
     "/register",
     "/privacy",
@@ -25,6 +26,7 @@ const AUTO_CACHE = [
     "/assets/js/qrCodeScanner.js",
     "/assets/js/authorize.js",
     "/assets/js/home.js",
+    "/assets/js/history.js",
     "/assets/js/login.js",
     "/assets/js/sitepointqr.js",
     "/assets/js/endpoints.js",
@@ -34,6 +36,7 @@ const AUTO_CACHE = [
     "/assets/css/home.css",
     "/assets/css/login.css",
     "/assets/css/qr.css",
+    "/assets/css/history.css",
 
     "/assets/images/done.gif",
     "/assets/images/loading.gif",
@@ -41,6 +44,7 @@ const AUTO_CACHE = [
     "/assets/images/qr.png",
     "/assets/images/bluewave.png",
     "/assets/images/history.svg",
+    "/assets/images/back.svg",
 
 
 ]
