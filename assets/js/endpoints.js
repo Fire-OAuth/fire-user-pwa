@@ -1,2 +1,2 @@
-let fireServerURL = "https://fireoauth.herokuapp.com"
-let endpointUrl = "https://fireoauth.herokuapp.com/api/tokens/generate"
+let fireServerURL = "https://fire.adaptable.app"
+let endpointUrl = "https://fire.adaptable.app/api/tokens/generate"
