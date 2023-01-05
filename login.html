@@ -44,7 +44,15 @@
         <script src="/assets/js/localforage.js"></script>
         <script src="/assets/js/pure.js"></script>
         <script src="/assets/js/login.js"></script>
-
+        <script>
+            if('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('serviceworker.js')
+                        .then((reg) => console.log('Success: ', reg.scope))
+                        .catch((err) => console.log('Failure: ', err));
+                })
+            }
+        </script>
         
 	</body>
 </html>
