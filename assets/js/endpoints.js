@@ -1,2 +1,2 @@
-let fireServerURL = "https://fire.adaptable.app"
-let endpointUrl = "https://fire.adaptable.app/api/tokens/generate"
+let fireServerURL = "https://fire.cybernode.dev"
+let endpointUrl = "https://fire.cybernode.dev/api/tokens/generate"
